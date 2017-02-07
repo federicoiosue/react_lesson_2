@@ -3,7 +3,7 @@ require('styles/App.css');
 
 import React from 'react';
 
-let yeomanImage = require('https://lh3.googleusercontent.com/-K-AR6CydUX_dtZ-Atx-NvOxrCi9fRHPIQUCTzsXftR_pI6bjKOdXqPh2BkTNgXaAVE=w300');
+let yeomanImage = require('../images/yeoman.png');
 
 class AppComponent extends React.Component {
   render() {
