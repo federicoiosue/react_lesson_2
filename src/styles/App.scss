@@ -1,3 +1,6 @@
+$icon-font-path: "~/bootstrap-sass/assets/fonts";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
 /* Base Application Styles */
 body {
   color: #fff;
@@ -7,7 +10,7 @@ body {
 .index img {
   margin: 40px auto;
   border-radius: 4px;
-  background: #fff;
+  //background: #fff;
   display: block;
 }
 
@@ -18,4 +21,8 @@ body {
   border: 1px solid #000;
   border-width: 1px 0;
   background: #666;
+}
+
+.index h1 {
+  text-align: center;
 }
