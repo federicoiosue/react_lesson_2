@@ -3,6 +3,7 @@
 import React from 'react';
 import List from './ListComponent';
 import AddTodo from './AddTodoComponent';
+import { remove } from 'lodash';
 
 require('styles/toDo/Manager.css');
 
@@ -12,16 +13,21 @@ class ManagerComponent extends React.Component {
 
     addTodo = (todo) => {
         this.todos.push(todo);
-        this.setState(
-            {}
-        )
+        this.setState({});
+    };
+
+    removeTodo = (id) => {
+        _.remove(this.todos, (todo) => {
+            return todo.id === id;
+        });
+        this.setState({});
     };
 
     render() {
         return (
             <div>
                 <AddTodo addTodo={this.addTodo}/>
-                <List todos={this.todos}/>
+                <List todos={this.todos} removeTodo={this.removeTodo}/>
             </div>
         );
     }

@@ -7,31 +7,53 @@ require('styles/toDo/AddTodo.css');
 
 class AddTodoComponent extends React.Component {
 
+    todo = {};
+
     constructor(props) {
         super(props);
-        this.state = {text: ""};
+        this.todo = props.todo || this.getNewTodo();
+    }
+
+    getNewTodo() {
+        return {text: '', done: false};
     }
 
     addTodo = () => {
         let todo = {
-            text: this.state.text,
-            done: false
+            id: Date.now(),
+            text: this.todo.text,
+            done: this.todo.done
         };
         this.props.addTodo(todo);
-        this.state = {text: ""};
+        this.todo = this.getNewTodo();
+        this.setState({});
     };
 
-    handleEmailChange = (e) => {
-        this.setState({text: e.target.value});
+    removeTodo = () => {
+        this.props.removeTodo(this.todo.id);
+    };
+
+    handleTextChange = (e) => {
+        this.todo.text = e.target.value;
+        this.setState({});
+    };
+
+    handleDoneChange = (e) => {
+        this.todo.done = e.target.checked;
+        this.setState({});
     };
 
     render() {
         return (
             <div className="addtodo-component">
                 <Form inline="true">
-                    <Checkbox/>
-                    <FormControl value={this.state.text} onChange={this.handleEmailChange}/>
-                    <Button onClick={this.addTodo} bsStyle="primary">Add</Button>
+                    <Checkbox value={this.todo.done} onChange={this.handleDoneChange}/>
+                    <FormControl value={this.todo.text} onChange={this.handleTextChange}/>
+                    {
+                        this.todo.id
+                            ? <Button onClick={this.removeTodo} bsStyle="danger">Remove</Button>
+                            : <Button onClick={this.addTodo} bsStyle="primary">Add</Button>
+                    }
                 </Form>
             </div>
         );

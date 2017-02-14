@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {Button, Checkbox, FormControl} from 'react-bootstrap';
+import AddTodo from './AddTodoComponent';
 
 require('styles/toDo/List.css');
 
@@ -11,8 +11,7 @@ class ListComponent extends React.Component {
         let rows = this.props.todos.map((element, index) => {
             return (
                 <tr key={index}>
-                    <td><Checkbox checked={element.done}/></td>
-                    <td>{element.text}</td>
+                    <AddTodo todo={element} removeTodo={this.props.removeTodo}/>
                 </tr>
             );
         });
